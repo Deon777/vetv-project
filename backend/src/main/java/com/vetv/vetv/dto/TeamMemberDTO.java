@@ -1,35 +1,45 @@
-package com.vetv.vetv.entities;
+package com.vetv.vetv.dto;
 
 import java.io.Serializable;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.vetv.vetv.entities.TeamMember;
 
-@Entity
-@Table(name = "tb_member")
-public class TeamMember implements Serializable{
+public class TeamMemberDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private String name;
 	private String function;
 	private String formation;
 	private String picURL;
 	
-	public TeamMember() {
+	
+	public TeamMemberDTO() {
 	}
 	
-	public TeamMember(String name, String function, String formation, String picURL) {
-		super();
+	public TeamMemberDTO(Long id, String name, String function, String formation, String picURL) {
+		this.id = id;
 		this.name = name;
 		this.function = function;
 		this.formation = formation;
 		this.picURL = picURL;
+	}
+	
+	public TeamMemberDTO(TeamMember entity) {
+		id = entity.getId();
+		name = entity.getName();
+		function = entity.getFunction();
+		formation = entity.getFormation();
+		picURL = entity.getPicURL();
+	}
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -62,10 +72,6 @@ public class TeamMember implements Serializable{
 
 	public void setPicURL(String picURL) {
 		this.picURL = picURL;
-	}
-	
-	public Long getId() {
-		return id;
 	}
 	
 }

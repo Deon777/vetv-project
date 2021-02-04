@@ -1,5 +1,5 @@
 package com.vetv.vetv.entities;
 
 public enum Gender {
-	Femea, Macho;
+	Femea, Macho, Outros;
 }

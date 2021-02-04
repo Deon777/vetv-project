@@ -1,23 +1,14 @@
-package com.vetv.vetv.entities;
+package com.vetv.vetv.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+import com.vetv.vetv.entities.Gender;
+import com.vetv.vetv.entities.PetToAdopt;
 
-@Entity
-@Table(name = "tb_pet_to_adopt")
-public class PetToAdopt implements Serializable {
+public class PetToAdotpDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
-	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Long id;
 	private String name;
 	private String breed;
@@ -30,12 +21,13 @@ public class PetToAdopt implements Serializable {
 	private String description;
 	private ArrayList<String> pic_URL;
 	
-	public PetToAdopt() {
+	
+	public PetToAdotpDTO() {
 	}
-
-	public PetToAdopt(String name, String breed, Gender gender, int age, Double weight, Double sizeChest,
+	
+	public PetToAdotpDTO(Long id, String name, String breed, Gender gender, int age, Double weight, Double sizeChest,
 			Double sizeNeck, Double sizeBack, String description, ArrayList<String> pic_URL) {
-		super();
+		this.id = id;
 		this.name = name;
 		this.breed = breed;
 		this.gender = gender;
@@ -46,6 +38,29 @@ public class PetToAdopt implements Serializable {
 		this.sizeBack = sizeBack;
 		this.description = description;
 		this.pic_URL = pic_URL;
+	}
+	
+	public PetToAdotpDTO(PetToAdopt entity) {
+		id = entity.getId();
+		name = entity.getName();
+		breed = entity.getBreed();
+		gender = entity.getGender();
+		age = entity.getAge();
+		weight = entity.getWeight();
+		sizeChest = entity.getSizeChest();
+		sizeNeck = entity.getSizeNeck();
+		sizeBack = entity.getSizeBack();
+		description = entity.getDescription();
+		pic_URL = entity.getPic_URL();
+	}
+
+	
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -126,10 +141,6 @@ public class PetToAdopt implements Serializable {
 
 	public void setPic_URL(ArrayList<String> pic_URL) {
 		this.pic_URL = pic_URL;
-	}
-	
-	public Long getId() {
-		return id;
 	}
 	
 }

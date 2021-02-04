@@ -18,7 +18,7 @@ public class Pets implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	private int age;
 	private String name;
 	private Double weight;
@@ -77,6 +77,10 @@ public class Pets implements Serializable {
 	
 	public void SetConsultations(Consultation consultation) {
 		consultations.add(consultation);
+	}
+	
+	public Long getId() {
+		return id;
 	}
 	
 }

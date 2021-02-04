@@ -1,24 +1,14 @@
-package com.vetv.vetv.entities;
+package com.vetv.vetv.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
+import com.vetv.vetv.entities.Gender;
+import com.vetv.vetv.entities.Users;
 
-@Entity
-@Table(name = "tb_users")
-public class Users implements Serializable {
+public class UsersDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 	private int age;
 	private Gender gender;
@@ -28,23 +18,31 @@ public class Users implements Serializable {
 	private String picURL;
 	private ArrayList<String> numbers;
 	
-	@OneToMany
-	private Set<Pets> pets = new HashSet<>();
 	
-	
-	public Users() {
+	public UsersDTO() {
 	}
 	
-	public Users(String name, String nickName, int age, Gender gender, String email, ArrayList<String> numbers,
-			String picURL) {
-		super();
-		this.name = name;
-		this.nickname = nickName;
+	public UsersDTO(Long id, int age, Gender gender, String name, String nickname, String email, String picURL,
+			ArrayList<String> numbers) {
+		this.id = id;
 		this.age = age;
 		this.gender = gender;
+		this.name = name;
+		this.nickname = nickname;
 		this.email = email;
-		this.numbers = numbers;
 		this.picURL = picURL;
+		this.numbers = numbers;
+	}
+	
+	public UsersDTO(Users entity) {
+		id = entity.getId();
+		age = entity.getAge();
+		gender = entity.getGender();
+		name = entity.getName();
+		nickname = entity.getNickname();
+		email = entity.getEmail();
+		picURL = entity.getPicURL();
+		numbers = entity.getNumbers();
 	}
 
 	
@@ -111,12 +109,5 @@ public class Users implements Serializable {
 	public void setNumbers(ArrayList<String> numbers) {
 		this.numbers = numbers;
 	}
-
-	public Set<Pets> getPets() {
-		return pets;
-	}
 	
-	public void AddPet(Pets pet) {
-		pets.add(pet);
-	}
 }

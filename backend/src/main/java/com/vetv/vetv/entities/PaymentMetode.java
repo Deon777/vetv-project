@@ -4,5 +4,6 @@ public enum PaymentMetode {
 	Credito, 
 	Debito, 
 	Dinheiro, 
-	Transferencia;
+	Transferencia,
+	Outros;
 }

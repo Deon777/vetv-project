@@ -16,7 +16,7 @@ public class Consultation implements Serializable {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	private int id;
+	private Long id;
 	private Date date;
 	private Double value;
 	private String description;
@@ -64,6 +64,9 @@ public class Consultation implements Serializable {
 	public void setDescription(String description) {
 		this.description = description;
 	}
-	
+
+	public Long getId() {
+		return id;
+	}
 	
 }
