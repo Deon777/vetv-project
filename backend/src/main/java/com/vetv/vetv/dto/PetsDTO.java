@@ -1,15 +1,15 @@
 package com.vetv.vetv.dto;
 
 import java.io.Serializable;
-import java.util.Date;
-import java.util.HashSet;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.OneToMany;
 
 import com.vetv.vetv.entities.Consultation;
 import com.vetv.vetv.entities.Gender;
-import com.vetv.vetv.entities.PaymentMetode;
 import com.vetv.vetv.entities.Pets;
 
 public class PetsDTO implements Serializable {
@@ -20,8 +20,8 @@ public class PetsDTO implements Serializable {
 	private String name;
 	private Double weight;
 	private Gender gender;
-	
-	private Set<Consultation> consultations = new HashSet<>();
+	@OneToMany
+	private List<ConsultationDTO> consultations = new ArrayList<>();
 
 	
 	public PetsDTO() {
@@ -33,7 +33,6 @@ public class PetsDTO implements Serializable {
 		this.name = name;
 		this.weight = weight;
 		this.gender = gender;
-		this.consultations = consultations;
 	}
 	
 	public PetsDTO(Pets entity) {
@@ -42,6 +41,7 @@ public class PetsDTO implements Serializable {
 		name = entity.getName();
 		weight = entity.getWeight();
 		gender = entity.getGender();
+		consultations = entity.getConsultations().stream().map(x -> new ConsultationDTO(x)).collect(Collectors.toList());
 	}
 
 	public Long getId() {
@@ -84,15 +84,15 @@ public class PetsDTO implements Serializable {
 		this.gender = gender;
 	}
 
-	public Set<Consultation> getConsultations() {
+	public List<ConsultationDTO> getConsultations() {
 		return consultations;
 	}
 
-	public void setConsultations(Set<Consultation> consultations) {
+	public void setConsultations(List<ConsultationDTO> consultations) {
 		this.consultations = consultations;
 	}
 
-	public void SetConsultations(Consultation consultation) {
+	public void SetConsultations(ConsultationDTO consultation) {
 		consultations.add(consultation);
 	}
 	

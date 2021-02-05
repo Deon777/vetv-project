@@ -21,6 +21,7 @@ public class UsersController {
 	@GetMapping
 	public ResponseEntity<List<UsersDTO>> findAllPets() {
 		List<UsersDTO> list = service.findAll();
+		
 		return ResponseEntity.ok().body(list);
 	}
 }

@@ -1,7 +1,7 @@
 package com.vetv.vetv.entities;
 
 import java.io.Serializable;
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
@@ -29,7 +31,10 @@ public class Users implements Serializable {
 	private String number;
 	
 	@OneToMany
-	private List<Pets> pets = new ArrayList<>();
+	@JoinTable(name = "tb_users_pets",
+	joinColumns = @JoinColumn(name = "users_id"),
+	inverseJoinColumns = @JoinColumn(name = "pets_id"))
+	private Set<Pets> pets = new HashSet<>();
 	
 	
 	public Users() {
@@ -112,7 +117,7 @@ public class Users implements Serializable {
 		this.number = number;
 	}
 
-	public List<Pets> getPets() {
+	public Set<Pets> getPets() {
 		return pets;
 	}
 	

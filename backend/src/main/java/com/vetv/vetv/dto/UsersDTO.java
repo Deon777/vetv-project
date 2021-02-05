@@ -2,6 +2,10 @@ package com.vetv.vetv.dto;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import javax.persistence.OneToMany;
 
 import com.vetv.vetv.entities.Gender;
 import com.vetv.vetv.entities.Users;
@@ -17,6 +21,8 @@ public class UsersDTO implements Serializable {
 	private String email;
 	private String picURL;
 	private String number;
+	@OneToMany
+	private List<PetsDTO> pets = new ArrayList<>();
 	
 	
 	public UsersDTO() {
@@ -43,6 +49,7 @@ public class UsersDTO implements Serializable {
 		email = entity.getEmail();
 		picURL = entity.getPicURL();
 		number = entity.getNumber();
+		pets = entity.getPets().stream().map(x -> new PetsDTO(x)).collect(Collectors.toList());
 	}
 
 	
@@ -102,12 +109,20 @@ public class UsersDTO implements Serializable {
 		this.picURL = picURL;
 	}
 
-	public String getNumbers() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumbers(String number) {
+	public void setNumber(String number) {
 		this.number = number;
+	}
+
+	public List<PetsDTO> getPets() {
+		return pets;
+	}
+
+	public void setPets(List<PetsDTO> pets) {
+		this.pets = pets;
 	}
 	
 }
