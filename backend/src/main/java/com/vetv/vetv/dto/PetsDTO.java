@@ -42,7 +42,6 @@ public class PetsDTO implements Serializable {
 		name = entity.getName();
 		weight = entity.getWeight();
 		gender = entity.getGender();
-		consultations = entity.GetConsultations();
 	}
 
 	public Long getId() {
@@ -91,6 +90,10 @@ public class PetsDTO implements Serializable {
 
 	public void setConsultations(Set<Consultation> consultations) {
 		this.consultations = consultations;
+	}
+
+	public void SetConsultations(Consultation consultation) {
+		consultations.add(consultation);
 	}
 	
 }

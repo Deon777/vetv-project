@@ -6,7 +6,7 @@ import java.util.ArrayList;
 import com.vetv.vetv.entities.Gender;
 import com.vetv.vetv.entities.PetToAdopt;
 
-public class PetToAdotpDTO implements Serializable {
+public class PetToAdoptDTO implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	private Long id;
@@ -22,10 +22,10 @@ public class PetToAdotpDTO implements Serializable {
 	private ArrayList<String> pic_URL;
 	
 	
-	public PetToAdotpDTO() {
+	public PetToAdoptDTO() {
 	}
 	
-	public PetToAdotpDTO(Long id, String name, String breed, Gender gender, int age, Double weight, Double sizeChest,
+	public PetToAdoptDTO(Long id, String name, String breed, Gender gender, int age, Double weight, Double sizeChest,
 			Double sizeNeck, Double sizeBack, String description, ArrayList<String> pic_URL) {
 		this.id = id;
 		this.name = name;
@@ -40,7 +40,7 @@ public class PetToAdotpDTO implements Serializable {
 		this.pic_URL = pic_URL;
 	}
 	
-	public PetToAdotpDTO(PetToAdopt entity) {
+	public PetToAdoptDTO(PetToAdopt entity) {
 		id = entity.getId();
 		name = entity.getName();
 		breed = entity.getBreed();

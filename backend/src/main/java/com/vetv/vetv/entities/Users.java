@@ -2,7 +2,7 @@ package com.vetv.vetv.entities;
 
 import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.Entity;
@@ -26,16 +26,16 @@ public class Users implements Serializable {
 	private String nickname;
 	private String email;
 	private String picURL;
-	private ArrayList<String> numbers;
+	private String number;
 	
 	@OneToMany
-	private Set<Pets> pets = new HashSet<>();
+	private List<Pets> pets = new ArrayList<>();
 	
 	
 	public Users() {
 	}
 	
-	public Users(String name, String nickName, int age, Gender gender, String email, ArrayList<String> numbers,
+	public Users(String name, String nickName, int age, Gender gender, String email, String number,
 			String picURL) {
 		super();
 		this.name = name;
@@ -43,7 +43,7 @@ public class Users implements Serializable {
 		this.age = age;
 		this.gender = gender;
 		this.email = email;
-		this.numbers = numbers;
+		this.number = number;
 		this.picURL = picURL;
 	}
 
@@ -104,15 +104,15 @@ public class Users implements Serializable {
 		this.picURL = picURL;
 	}
 
-	public ArrayList<String> getNumbers() {
-		return numbers;
+	public String getNumber() {
+		return number;
 	}
 
-	public void setNumbers(ArrayList<String> numbers) {
-		this.numbers = numbers;
+	public void setNumber(String number) {
+		this.number = number;
 	}
 
-	public Set<Pets> getPets() {
+	public List<Pets> getPets() {
 		return pets;
 	}
 	

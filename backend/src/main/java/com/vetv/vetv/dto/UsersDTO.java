@@ -16,14 +16,14 @@ public class UsersDTO implements Serializable {
 	private String nickname;
 	private String email;
 	private String picURL;
-	private ArrayList<String> numbers;
+	private String number;
 	
 	
 	public UsersDTO() {
 	}
 	
 	public UsersDTO(Long id, int age, Gender gender, String name, String nickname, String email, String picURL,
-			ArrayList<String> numbers) {
+			String number) {
 		this.id = id;
 		this.age = age;
 		this.gender = gender;
@@ -31,7 +31,7 @@ public class UsersDTO implements Serializable {
 		this.nickname = nickname;
 		this.email = email;
 		this.picURL = picURL;
-		this.numbers = numbers;
+		this.number = number;
 	}
 	
 	public UsersDTO(Users entity) {
@@ -42,7 +42,7 @@ public class UsersDTO implements Serializable {
 		nickname = entity.getNickname();
 		email = entity.getEmail();
 		picURL = entity.getPicURL();
-		numbers = entity.getNumbers();
+		number = entity.getNumber();
 	}
 
 	
@@ -102,12 +102,12 @@ public class UsersDTO implements Serializable {
 		this.picURL = picURL;
 	}
 
-	public ArrayList<String> getNumbers() {
-		return numbers;
+	public String getNumbers() {
+		return number;
 	}
 
-	public void setNumbers(ArrayList<String> numbers) {
-		this.numbers = numbers;
+	public void setNumbers(String number) {
+		this.number = number;
 	}
 	
 }
