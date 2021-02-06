@@ -24,4 +24,12 @@ public class TeamMemberService {
 		return list.stream().map(x -> new TeamMemberDTO(x)).collect(Collectors.toList());
 	}
 	
+	@Transactional
+	public TeamMemberDTO insert(TeamMemberDTO dto) {
+		TeamMember entity = new TeamMember(dto.getName(), dto.getFunction(), 
+				dto.getFormation(), dto.getPicURL());
+		repository.save(entity);
+		return new TeamMemberDTO(entity);
+	}
+	
 }

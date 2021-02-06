@@ -2,9 +2,9 @@ package com.vetv.vetv.entities;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -30,7 +30,7 @@ public class Users implements Serializable {
 	private String picURL;
 	private String number;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "tb_users_pets",
 	joinColumns = @JoinColumn(name = "users_id"),
 	inverseJoinColumns = @JoinColumn(name = "pets_id"))

@@ -1,5 +1,7 @@
 package com.vetv.vetv.services;
 
+import java.time.Instant;
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -22,6 +24,14 @@ public class ConsultationService {
 	public List<ConsultationDTO> findAll() {
 		List<Consultation> list = repository.findAll();
 		return list.stream().map(x -> new ConsultationDTO(x)).collect(Collectors.toList());
+	}
+	
+	@Transactional
+	public ConsultationDTO insert(ConsultationDTO dto) {
+		Consultation entity = new Consultation(Date.from(Instant.now()), dto.getValue(),
+				dto.getMetode(), dto.getDescription());
+		repository.save(entity);
+		return new ConsultationDTO(entity);
 	}
 	
 }

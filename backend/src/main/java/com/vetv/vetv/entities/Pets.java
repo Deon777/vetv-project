@@ -4,6 +4,7 @@ import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -26,7 +27,7 @@ public class Pets implements Serializable {
 	private Double weight;
 	private Gender gender;
 	
-	@OneToMany
+	@OneToMany(cascade = CascadeType.PERSIST)
 	@JoinTable(name = "tb_pets_consultations",
 	joinColumns = @JoinColumn(name = "pets_id"),
 	inverseJoinColumns = @JoinColumn(name = "consultation_id"))
@@ -36,13 +37,12 @@ public class Pets implements Serializable {
 	public Pets() {
 	}
 	
-	public Pets(Long id, int age, String name, Double weight, Gender gender, Set<Consultation> consultations) {
+	public Pets(Long id, int age, String name, Double weight, Gender gender) {
 		this.id = id;
 		this.age = age;
 		this.name = name;
 		this.weight = weight;
 		this.gender = gender;
-		this.consultations = consultations;
 	}
 	
 	

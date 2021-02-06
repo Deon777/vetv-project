@@ -24,4 +24,12 @@ public class PetToAdoptService {
 		return list.stream().map(x -> new PetToAdoptDTO(x)).collect(Collectors.toList());
 	}
 	
+	public PetToAdoptDTO insert(PetToAdoptDTO dto) {
+		PetToAdopt entity = new PetToAdopt(dto.getName(), dto.getBreed(), dto.getGender(),
+				dto.getAge(), dto.getWeight(), dto.getSizeChest(), dto.getSizeNeck(),
+				dto.getSizeBack(), dto.getDescription(), dto.getPic_URL());
+		repository.save(entity);
+		return new PetToAdoptDTO(entity);
+	}
+	
 }
