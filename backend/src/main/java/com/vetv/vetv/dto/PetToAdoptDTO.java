@@ -142,5 +142,6 @@ public class PetToAdoptDTO implements Serializable {
 	public void setPic_URL(ArrayList<String> pic_URL) {
 		this.pic_URL = pic_URL;
 	}
+
 	
 }

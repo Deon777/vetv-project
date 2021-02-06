@@ -20,7 +20,9 @@ public class PetsService {
 	
 	@Autowired
 	private PetsRepository repository;
-	private ConsultationRepository consultRepository;
+	@Autowired
+	private ConsultationRepository conRepository;
+
 	
 	@Transactional(readOnly = true)
 	public List<PetsDTO> findAll() {
@@ -33,9 +35,10 @@ public class PetsService {
 	public PetsDTO insert(PetsDTO dto) {
 		Pets entity = new Pets(null, dto.getAge(), dto.getName(), dto.getWeight(), dto.getGender());
 		for(ConsultationDTO x : dto.getConsultations()) {
-			entity.AddConsultations(new Consultation(x.getDate(), x.getValue(), x.getMetode(), x.getDescription()));
+			Consultation consult = conRepository.getOne(x.getId());
+			entity.getConsultations().add(consult);
 		}
-		repository.save(entity);
+		entity = repository.save(entity);
 		return new PetsDTO(entity);
 	}
 	

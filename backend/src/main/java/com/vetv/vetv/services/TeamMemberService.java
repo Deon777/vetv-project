@@ -26,9 +26,9 @@ public class TeamMemberService {
 	
 	@Transactional
 	public TeamMemberDTO insert(TeamMemberDTO dto) {
-		TeamMember entity = new TeamMember(dto.getName(), dto.getFunction(), 
+		TeamMember entity = new TeamMember(null, dto.getName(), dto.getFunction(), 
 				dto.getFormation(), dto.getPicURL());
-		repository.save(entity);
+		entity = repository.save(entity);
 		return new TeamMemberDTO(entity);
 	}
 	

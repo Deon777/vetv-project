@@ -35,7 +35,6 @@ public class ConsultationDTO implements Serializable {
 		metode = entity.getMetode();
 	}
 
-	
 	public Long getId() {
 		return id;
 	}
@@ -75,6 +74,5 @@ public class ConsultationDTO implements Serializable {
 	public void setMetode(PaymentMetode metode) {
 		this.metode = metode;
 	}
-	
-	
+
 }

@@ -7,13 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.vetv.vetv.dto.ConsultationDTO;
 import com.vetv.vetv.dto.PetsDTO;
 import com.vetv.vetv.dto.UsersDTO;
-import com.vetv.vetv.entities.Consultation;
 import com.vetv.vetv.entities.Pets;
 import com.vetv.vetv.entities.Users;
-import com.vetv.vetv.repositories.ConsultationRepository;
+import com.vetv.vetv.repositories.PetsRepository;
 import com.vetv.vetv.repositories.UsersRepository;
 
 
@@ -22,6 +20,8 @@ public class UsersService {
 	
 	@Autowired
 	private UsersRepository repository;
+	@Autowired
+	private PetsRepository petsRepository;
 	
 	@Transactional(readOnly = true)
 	public List<UsersDTO> findAll() {
@@ -32,12 +32,13 @@ public class UsersService {
 	
 	@Transactional
 	public UsersDTO insert(UsersDTO dto) {
-		Users entity = new Users(dto.getName(), dto.getNickname(), dto.getAge(),
+		Users entity = new Users(null, dto.getName(), dto.getNickname(), dto.getAge(),
 				dto.getGender(), dto.getEmail(), dto.getNumber(), dto.getPicURL());
 		for(PetsDTO x : dto.getPets()) {
-			entity.AddPet(new Pets(x.getId(), x.getAge(), x.getName(), x.getWeight(), x.getGender()));
+			Pets pet = petsRepository.getOne(x.getId());
+			entity.getPets().add(pet);
 		}
-		repository.save(entity);
+		entity = repository.save(entity);
 		return new UsersDTO(entity);
 	}
 }

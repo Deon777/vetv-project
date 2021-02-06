@@ -25,12 +25,21 @@ public class Consultation implements Serializable {
 	public Consultation() {
 	}
 	
-	public Consultation(Date date, Double value, PaymentMetode metode, String description) {
+	public Consultation(Long id, Date date, Double value, PaymentMetode metode, String description) {
 		super();
+		this.id = id;
 		this.date = date;
 		this.value = value;
 		this.metode = metode;
 		this.description = description;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public Date getDate() {
@@ -49,14 +58,6 @@ public class Consultation implements Serializable {
 		this.value = value;
 	}
 
-	public PaymentMetode getMetode() {
-		return metode;
-	}
-
-	public void setMetode(PaymentMetode metode) {
-		this.metode = metode;
-	}
-
 	public String getDescription() {
 		return description;
 	}
@@ -65,8 +66,37 @@ public class Consultation implements Serializable {
 		this.description = description;
 	}
 
-	public Long getId() {
-		return id;
+	public PaymentMetode getMetode() {
+		return metode;
+	}
+
+	public void setMetode(PaymentMetode metode) {
+		this.metode = metode;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Consultation other = (Consultation) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 	
 }

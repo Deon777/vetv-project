@@ -14,6 +14,8 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity
 @Table(name = "tb_pets")
 public class Pets implements Serializable {
@@ -27,7 +29,7 @@ public class Pets implements Serializable {
 	private Double weight;
 	private Gender gender;
 	
-	@OneToMany(cascade = CascadeType.PERSIST)
+	@OneToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "tb_pets_consultations",
 	joinColumns = @JoinColumn(name = "pets_id"),
 	inverseJoinColumns = @JoinColumn(name = "consultation_id"))
@@ -44,8 +46,7 @@ public class Pets implements Serializable {
 		this.weight = weight;
 		this.gender = gender;
 	}
-	
-	
+
 	public Long getId() {
 		return id;
 	}
@@ -90,12 +91,30 @@ public class Pets implements Serializable {
 		return consultations;
 	}
 
-	public void setConsultations(Set<Consultation> consultations) {
-		this.consultations = consultations;
+	
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
 	}
 
-	public void AddConsultations(Consultation consultation) {
-		consultations.add(consultation);
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Pets other = (Pets) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 	
 }

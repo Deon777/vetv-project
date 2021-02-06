@@ -21,7 +21,7 @@ public class UsersDTO implements Serializable {
 	private String email;
 	private String picURL;
 	private String number;
-	@OneToMany
+	
 	private List<PetsDTO> pets = new ArrayList<>();
 	
 	

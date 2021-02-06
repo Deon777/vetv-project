@@ -20,7 +20,7 @@ public class PetsDTO implements Serializable {
 	private String name;
 	private Double weight;
 	private Gender gender;
-	@OneToMany
+	
 	private List<ConsultationDTO> consultations = new ArrayList<>();
 
 	
@@ -86,14 +86,6 @@ public class PetsDTO implements Serializable {
 
 	public List<ConsultationDTO> getConsultations() {
 		return consultations;
-	}
-
-	public void setConsultations(List<ConsultationDTO> consultations) {
-		this.consultations = consultations;
-	}
-
-	public void SetConsultations(ConsultationDTO consultation) {
-		consultations.add(consultation);
 	}
 	
 }

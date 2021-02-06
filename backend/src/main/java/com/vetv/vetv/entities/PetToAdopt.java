@@ -33,9 +33,10 @@ public class PetToAdopt implements Serializable {
 	public PetToAdopt() {
 	}
 
-	public PetToAdopt(String name, String breed, Gender gender, int age, Double weight, Double sizeChest,
+	public PetToAdopt(Long id, String name, String breed, Gender gender, int age, Double weight, Double sizeChest,
 			Double sizeNeck, Double sizeBack, String description, ArrayList<String> pic_URL) {
 		super();
+		this.id = id;
 		this.name = name;
 		this.breed = breed;
 		this.gender = gender;
@@ -46,6 +47,14 @@ public class PetToAdopt implements Serializable {
 		this.sizeBack = sizeBack;
 		this.description = description;
 		this.pic_URL = pic_URL;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getName() {
@@ -127,9 +136,31 @@ public class PetToAdopt implements Serializable {
 	public void setPic_URL(ArrayList<String> pic_URL) {
 		this.pic_URL = pic_URL;
 	}
+
 	
-	public Long getId() {
-		return id;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		PetToAdopt other = (PetToAdopt) obj;
+		if (id == null) {
+			if (other.id != null)
+				return false;
+		} else if (!id.equals(other.id))
+			return false;
+		return true;
 	}
 	
 }

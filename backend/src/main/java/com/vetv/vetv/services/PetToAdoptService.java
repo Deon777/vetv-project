@@ -25,10 +25,10 @@ public class PetToAdoptService {
 	}
 	
 	public PetToAdoptDTO insert(PetToAdoptDTO dto) {
-		PetToAdopt entity = new PetToAdopt(dto.getName(), dto.getBreed(), dto.getGender(),
+		PetToAdopt entity = new PetToAdopt(null, dto.getName(), dto.getBreed(), dto.getGender(),
 				dto.getAge(), dto.getWeight(), dto.getSizeChest(), dto.getSizeNeck(),
 				dto.getSizeBack(), dto.getDescription(), dto.getPic_URL());
-		repository.save(entity);
+		entity = repository.save(entity);
 		return new PetToAdoptDTO(entity);
 	}
 	

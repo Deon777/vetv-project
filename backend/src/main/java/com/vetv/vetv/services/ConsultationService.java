@@ -28,9 +28,9 @@ public class ConsultationService {
 	
 	@Transactional
 	public ConsultationDTO insert(ConsultationDTO dto) {
-		Consultation entity = new Consultation(Date.from(Instant.now()), dto.getValue(),
+		Consultation entity = new Consultation(null, Date.from(Instant.now()), dto.getValue(),
 				dto.getMetode(), dto.getDescription());
-		repository.save(entity);
+		entity = repository.save(entity);
 		return new ConsultationDTO(entity);
 	}
 	
