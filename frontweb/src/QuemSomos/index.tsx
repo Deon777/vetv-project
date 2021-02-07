@@ -1,23 +1,35 @@
 import './styles.css';
-import {ReactComponent as Img } from '../Assets/vet.svg';
-import {ReactComponent as Email } from '../Assets/envelope.svg';
-import {ReactComponent as Call } from '../Assets/call.svg';
-import {ReactComponent as WhatsApp } from '../Assets/whatsapp.svg';
-import {ReactComponent as Facebook } from '../Assets/facebook.svg';
-import {ReactComponent as Instagram } from '../Assets/instagram.svg';
+import TeamList from './TeamList';
+import { useEffect, useState } from 'react';
+import { TeamMember } from './Types';
+import { fetchMembers } from '../api';
 
 function QuemSomos(){
+
+    const [members, setMembers] = useState<TeamMember[]>([]);
+
+    useEffect (() => {
+        fetchMembers()
+            .then(response => setMembers(response.data))
+            .catch(error => console.log(error));
+    }, []);
+
     return (
-        <footer className = "quemSomos-container">
+        <div className = "quemSomos-container">
 
-            <Img className = "img-clinic" />
-            <p className = "clinic-text">
-                xxxxxxxxxxxxxxx
-            </p>
+            <div className = "quemSomos-clinic">   
+                <div className = "img-clinic" />
+                <p className = "clinic-text">
+                    xxxxxxxxxxxxxxx
+                </p>
+            </div>
 
-            <h1 className = "titulo">Nossa equipe</h1>
+            <div className = "quemSomos-team">
+                <h1 className = "titulo">Nossa equipe</h1>
+                <TeamList members = {members}/>
+            </div>
 
-        </footer>
+        </div>
     )
 }
 export default QuemSomos;
