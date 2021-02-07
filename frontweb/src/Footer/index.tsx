@@ -9,6 +9,7 @@ import {ReactComponent as Instagram } from '../Assets/instagram.svg';
 function Footer(){
     return (
         <footer className = "footer-container">
+
             <Logo className = "logo-footer" />
             <p className = "logo-text-footer">
                 CLÍNICA VETV <br/> 
@@ -17,22 +18,44 @@ function Footer(){
                 </span> 
             </p>
 
+
+            <div className = "vertical-line"></div>
+
+
             <p className = "faleConosco-text">
                 Fale Conosco
             </p>
+
+            <div className = "icons-container-FaleConosco">
+                <Email className = "icon"/> <br/>
+                <Call className = "icon"/> <br/>
+                <WhatsApp className = "icon"/> 
+            </div>
+        
             <p className = "faleConosco-items">
-                <Email className = "icon"/> xxx@gmail.com<br/>
-                <Call className = "icon"/> (xx) xxxxx-xxxx<br/>
-                <WhatsApp className = "icon"/> (xx) xxxxx-xxxx<br/>
+                xxx@gmail.com<br/>
+                (xx) xxxxx-xxxx<br/>
+                (xx) xxxxx-xxxx
             </p>
+
+
+            <div className = "vertical-line"></div>
+
 
             <p className = "Links-text">
                 Links
             </p>
+
+            <div className = "icons-container-Links">
+                <Facebook className = "icon"/> <br/>
+                <Instagram className = "icon"/>
+            </div>
+
             <p className = "Links-items">
-                <Facebook className = "icon"/> Facebook<br/>
-                <Instagram className = "icon"/> Instagram<br/>
+                <a href="https://facebook.com" target = "_new">Facebook</a><br/>
+                <a href="https://instagram.com" target = "_new">Instagram</a><br/>
             </p>
+
         </footer>
     )
 }
